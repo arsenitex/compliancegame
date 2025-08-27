@@ -6,7 +6,24 @@
     <title>The Analog Integrity Grid - SIMULATOR</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap');
-        /* Custom fonts will be loaded locally - ES Klarheit Kurrent and Jogan Soft */
+        /* Custom fonts - ES Klarheit Kurrent and Jogan Soft */
+        @font-face {
+            font-family: 'ES Klarheit Kurrent';
+            src: url('assets/fonts/ESKlarheitKurrent.woff2') format('woff2'),
+                 url('assets/fonts/ESKlarheitKurrent.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Jogan Soft';
+            src: url('assets/fonts/JoganSoft.woff2') format('woff2'),
+                 url('assets/fonts/JoganSoft.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
         
         * {
             margin: 0;
@@ -33,7 +50,7 @@
         }
         
         body {
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Jogan Soft', 'Exo 2', sans-serif;
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             min-height: 100vh;
             overflow-x: hidden;
@@ -102,7 +119,7 @@
         }
         
         .header h1 {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-size: 2.8em;
             margin-bottom: 10px;
             font-weight: 900;
@@ -156,7 +173,7 @@
         }
         
         .player-name {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-weight: 700;
             color: var(--text-primary);
             font-size: 1.2em;
@@ -197,11 +214,10 @@
         }
         
         .coin-amount {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-size: 1.8em;
             font-weight: 700;
-            color: var(--violet);
-            text-shadow: 0 0 10px rgba(126, 63, 239, 0.5);
+            color: var(--text-primary);
         }
         
         .progress-section {
@@ -261,7 +277,7 @@
         }
         
         .welcome-title {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-size: 2.5em;
             color: var(--text-primary);
             margin-bottom: 30px;
@@ -309,7 +325,7 @@
         }
         
         .character-name {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 5px;
@@ -345,7 +361,7 @@
         }
         
         .scenario-title {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             color: var(--text-primary);
             margin-bottom: 20px;
             font-size: 1.4em;
@@ -414,7 +430,7 @@
         }
         
         .choice-letter {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-weight: 700;
             color: #00ffff;
             font-size: 1.3em;
@@ -452,7 +468,7 @@
         }
         
         .betting-title {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             color: var(--text-primary);
             font-size: 1.5em;
             margin-bottom: 15px;
@@ -489,7 +505,7 @@
         }
         
         .bet-amount {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-size: 1.8em;
             font-weight: 700;
             color: var(--text-primary);
@@ -507,7 +523,7 @@
             border: none;
             padding: 18px 40px;
             border-radius: 30px;
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-size: 1.1em;
             font-weight: 700;
             cursor: pointer;
@@ -583,7 +599,7 @@
             color: #000;
             padding: 10px 20px;
             border-radius: 25px;
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-weight: 700;
             margin: 20px 0;
             display: inline-block;
@@ -605,7 +621,7 @@
         }
         
         .stat-number {
-            font-family: 'Orbitron', monospace;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-size: 2.5em;
             font-weight: 700;
             color: var(--cyan-accent);
