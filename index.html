@@ -158,12 +158,12 @@
         .player-name {
             font-family: 'Orbitron', monospace;
             font-weight: 700;
-            color: var(--violet);
+            color: var(--text-primary);
             font-size: 1.2em;
         }
         
         .player-title {
-            color: var(--sunset);
+            color: var(--text-secondary);
             font-size: 0.9em;
         }
         
@@ -254,18 +254,17 @@
         
         .welcome-screen {
             text-align: center;
-            background: rgba(214, 189, 172, 0.7);
+            background: var(--bg-secondary);
             border-radius: 20px;
             padding: 40px;
-            border: 2px solid var(--fuchsia);
+            border: 1px solid var(--purple-primary);
         }
         
         .welcome-title {
             font-family: 'Orbitron', monospace;
             font-size: 2.5em;
-            color: var(--violet);
+            color: var(--text-primary);
             margin-bottom: 30px;
-            text-shadow: 0 0 20px rgba(126, 63, 239, 0.5);
         }
         
         .character-selection {
@@ -307,18 +306,17 @@
             align-items: center;
             justify-content: center;
             font-size: 2.5em;
-            background: linear-gradient(135deg, var(--violet), var(--blue));
         }
         
         .character-name {
             font-family: 'Orbitron', monospace;
             font-weight: 700;
-            color: var(--violet);
+            color: var(--text-primary);
             margin-bottom: 5px;
         }
         
         .character-role {
-            color: var(--sunset);
+            color: var(--text-secondary);
             font-size: 0.9em;
         }
         
@@ -504,8 +502,8 @@
         }
         
         .game-button {
-            background: linear-gradient(135deg, var(--fuchsia), var(--violet));
-            color: var(--light-text);
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-secondary));
+            color: var(--text-primary);
             border: none;
             padding: 18px 40px;
             border-radius: 30px;
@@ -516,13 +514,13 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 5px 20px rgba(199, 100, 161, 0.3);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
             margin: 20px 10px;
         }
         
         .game-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(199, 100, 161, 0.5);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.5);
         }
         
         .game-button:disabled {
@@ -680,7 +678,7 @@
                         <p style="color: var(--cyan-accent); font-weight: bold;">Surpass <strong>200 Anacoins</strong> and earn your rank as <strong>The Analogist</strong></p>
                     </div>
                     
-                    <h3 style="color: var(--violet); margin: 30px 0 20px;">Choose Your Agent:</h3>
+                    <h3 style="color: var(--purple-accent); margin: 30px 0 20px;">Choose Your Agent:</h3>
                     <div class="character-selection" id="character-selection">
                         <div class="character-option" data-character="sakura" onclick="selectCharacter('sakura')">
                             <div class="character-icon" style="background: linear-gradient(135deg, #ec4899, #a855f7); border-radius: 50%;"></div>
@@ -749,7 +747,7 @@
                         <div class="bet-card" data-bet="50" onclick="selectBet(50)">
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
                                 <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--purple-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8em;">₿</div>
-                                <div class="bet-amount">30</div>
+                                <div class="bet-amount">50</div>
                             </div>
                             <div class="bet-risk">High Confidence</div>
                         </div>
@@ -834,23 +832,23 @@
         
         // Character data
         const characters = {
-            rookie: {
+            sakura: {
+                name: "Agent Sakura",
+                title: "The Strategist", 
+                avatar: "🌸",
+                description: "Strategic and diplomatic"
+            },
+            nova: {
                 name: "Agent Nova",
-                title: "The Analytical Mind", 
-                avatar: "🤖",
+                title: "The Analytical Mind",
+                avatar: "⭐", 
                 description: "Data-driven and methodical"
             },
-            veteran: {
-                name: "Commander Sage",
-                title: "The Wise Leader",
-                avatar: "👨‍💼", 
-                description: "Experienced and strategic"
-            },
-            hacker: {
-                name: "Agent Cipher",
-                title: "The Tech Specialist",
-                avatar: "👩‍💻",
-                description: "Tech-savvy and innovative"
+            sentinel: {
+                name: "Agent Sentinel",
+                title: "The Guardian",
+                avatar: "🛡️",
+                description: "Protective and principled"
             }
         };
         
