@@ -1121,6 +1121,7 @@
         
         // Character selection
         function selectCharacter(character) {
+            console.log('Selecting character:', character);
             selectedCharacter = character;
             document.querySelectorAll('.character-option').forEach(option => {
                 option.classList.remove('selected');
@@ -1129,15 +1130,28 @@
             
             // Update player info
             const charData = characters[character];
-            document.getElementById('player-avatar').textContent = charData.avatar;
-            document.getElementById('player-name').textContent = charData.name;
-            document.getElementById('player-title').textContent = charData.title;
-            
-            document.getElementById('start-mission').disabled = false;
+            if (charData) {
+                document.getElementById('player-avatar').textContent = charData.avatar;
+                document.getElementById('player-name').textContent = charData.name;
+                document.getElementById('player-title').textContent = charData.title;
+                
+                const startButton = document.getElementById('start-mission');
+                if (startButton) {
+                    startButton.disabled = false;
+                    console.log('Start button enabled');
+                }
+            } else {
+                console.error('Character data not found for:', character);
+            }
         }
         
         // Start the game
         function startMission() {
+            console.log('Starting mission with character:', selectedCharacter);
+            if (!selectedCharacter) {
+                alert('Please select a character first!');
+                return;
+            }
             document.getElementById('welcome-screen').classList.remove('active');
             showMission();
         }
