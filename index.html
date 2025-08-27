@@ -653,6 +653,13 @@
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
+            pointer-events: none;
+        }
+        
+        .game-button:not(:disabled) {
+            opacity: 1;
+            pointer-events: auto;
+            cursor: pointer;
         }
         
         .result-modal {
@@ -1123,22 +1130,41 @@
         function selectCharacter(character) {
             console.log('Selecting character:', character);
             selectedCharacter = character;
+            
+            // Remove selected class from all options
             document.querySelectorAll('.character-option').forEach(option => {
                 option.classList.remove('selected');
             });
-            document.querySelector(`[data-character="${character}"]`).classList.add('selected');
+            
+            // Add selected class to clicked option
+            const selectedOption = document.querySelector(`[data-character="${character}"]`);
+            if (selectedOption) {
+                selectedOption.classList.add('selected');
+            }
             
             // Update player info
             const charData = characters[character];
+            console.log('Character data:', charData);
+            
             if (charData) {
-                document.getElementById('player-avatar').textContent = charData.avatar;
-                document.getElementById('player-name').textContent = charData.name;
-                document.getElementById('player-title').textContent = charData.title;
+                const avatar = document.getElementById('player-avatar');
+                const name = document.getElementById('player-name');
+                const title = document.getElementById('player-title');
                 
+                if (avatar) avatar.textContent = charData.avatar;
+                if (name) name.textContent = charData.name;
+                if (title) title.textContent = charData.title;
+                
+                // Enable start button
                 const startButton = document.getElementById('start-mission');
                 if (startButton) {
                     startButton.disabled = false;
-                    console.log('Start button enabled');
+                    startButton.removeAttribute('disabled');
+                    startButton.style.opacity = '1';
+                    startButton.style.pointerEvents = 'auto';
+                    console.log('Start button enabled - disabled attribute removed');
+                } else {
+                    console.error('Start button not found!');
                 }
             } else {
                 console.error('Character data not found for:', character);
@@ -1147,12 +1173,23 @@
         
         // Start the game
         function startMission() {
-            console.log('Starting mission with character:', selectedCharacter);
+            console.log('Start Mission clicked! Selected character:', selectedCharacter);
+            
             if (!selectedCharacter) {
+                console.error('No character selected!');
                 alert('Please select a character first!');
                 return;
             }
-            document.getElementById('welcome-screen').classList.remove('active');
+            
+            const welcomeScreen = document.getElementById('welcome-screen');
+            if (welcomeScreen) {
+                console.log('Hiding welcome screen...');
+                welcomeScreen.classList.remove('active');
+            } else {
+                console.error('Welcome screen not found!');
+            }
+            
+            console.log('Showing mission...');
             showMission();
         }
         
@@ -1411,9 +1448,34 @@
         
         // Initialize the game
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded - Initializing game...');
             createParticles();
             updateCreditsDisplay();
             updateProgress(0);
+            
+            // Add backup event listener for start mission button
+            const startButton = document.getElementById('start-mission');
+            if (startButton) {
+                console.log('Adding backup event listener to start button');
+                startButton.addEventListener('click', function(e) {
+                    console.log('Start button clicked via event listener');
+                    if (!startButton.disabled) {
+                        startMission();
+                    } else {
+                        console.log('Button is disabled, please select a character first');
+                    }
+                });
+            }
+            
+            // Add character selection event listeners as backup
+            document.querySelectorAll('.character-option').forEach((option, index) => {
+                const character = option.getAttribute('data-character');
+                console.log(`Adding backup listener to character: ${character}`);
+                option.addEventListener('click', function(e) {
+                    console.log(`Character ${character} clicked via event listener`);
+                    selectCharacter(character);
+                });
+            });
         });
     </script>
 </body>
