@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Analog Code Challenge - Gaming Edition</title>
+    <title>The Analog Integrity Grid - SIMULATOR</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap');
+        /* Custom fonts will be loaded locally - ES Klarheit Kurrent and Jogan Soft */
         
         * {
             margin: 0;
@@ -14,22 +15,29 @@
         }
         
         :root {
-            --pastel-pink: #FDD6ED;
-            --sunset: #AE9B91;
-            --fuchsia: #C764A1;
-            --desert: #D6BDAC;
-            --violet: #7E3FEF;
-            --blue: #2A1AFF;
-            --dark-text: #2D2B2D;
-            --light-text: #FFFFFF;
+            /* New dark theme colors */
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-card: #0f172a;
+            --purple-primary: #8b5cf6;
+            --purple-secondary: #a78bfa;
+            --purple-accent: #c4b5fd;
+            --cyan-accent: #06b6d4;
+            --pink-accent: #ec4899;
+            --orange-accent: #f97316;
+            --green-success: #10b981;
+            --red-danger: #ef4444;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
         }
         
         body {
             font-family: 'Exo 2', sans-serif;
-            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--sunset) 50%, var(--fuchsia) 100%);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             min-height: 100vh;
             overflow-x: hidden;
-            color: var(--dark-text);
+            color: var(--text-primary);
             position: relative;
         }
         
@@ -55,11 +63,12 @@
         }
         
         .game-container {
-            background: rgba(253, 214, 237, 0.95);
+            background: var(--bg-card);
             border-radius: 20px;
             backdrop-filter: blur(20px);
-            border: 2px solid var(--fuchsia);
-            box-shadow: 0 0 50px rgba(199, 100, 161, 0.3);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--purple-primary);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.2);
             max-width: 1200px;
             width: 95%;
             margin: 20px auto;
@@ -68,8 +77,8 @@
         }
         
         .header {
-            background: linear-gradient(135deg, var(--violet), var(--blue));
-            color: var(--light-text);
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-secondary));
+            color: var(--text-primary);
             padding: 30px;
             text-align: center;
             position: relative;
@@ -112,27 +121,27 @@
         }
         
         .hud {
-            background: rgba(214, 189, 172, 0.9);
+            background: var(--bg-secondary);
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--fuchsia);
+            border-bottom: 1px solid var(--purple-primary);
             position: relative;
         }
         
         .character-avatar {
             width: 80px;
             height: 80px;
-            border-radius: 50%;
-            border: 3px solid var(--fuchsia);
-            background: linear-gradient(135deg, var(--violet), var(--blue));
+            border-radius: 15px;
+            border: 2px solid var(--purple-primary);
+            background: linear-gradient(135deg, var(--orange-accent), var(--purple-primary));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5em;
             position: relative;
-            animation: pulse 2s ease-in-out infinite;
+            overflow: hidden;
         }
         
         @keyframes pulse {
@@ -162,10 +171,10 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            background: rgba(126, 63, 239, 0.1);
+            background: rgba(139, 92, 246, 0.1);
             padding: 15px 25px;
             border-radius: 15px;
-            border: 2px solid var(--violet);
+            border: 1px solid var(--purple-primary);
         }
         
         .coin-icon {
@@ -270,23 +279,23 @@
             cursor: pointer;
             padding: 20px;
             border-radius: 15px;
-            border: 2px solid var(--fuchsia);
-            background: rgba(253, 214, 237, 0.3);
+            border: 1px solid var(--purple-primary);
+            background: var(--bg-card);
             transition: all 0.3s ease;
             text-align: center;
             min-width: 150px;
         }
         
         .character-option:hover {
-            border-color: var(--violet);
-            background: rgba(126, 63, 239, 0.1);
+            border-color: var(--purple-secondary);
+            background: rgba(139, 92, 246, 0.1);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(126, 63, 239, 0.2);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
         }
         
         .character-option.selected {
-            border-color: var(--blue);
-            background: rgba(42, 26, 255, 0.1);
+            border-color: var(--cyan-accent);
+            background: rgba(6, 182, 212, 0.1);
         }
         
         .character-icon {
@@ -314,24 +323,22 @@
         }
         
         .scenario-card {
-            background: rgba(0, 30, 60, 0.8);
+            background: var(--bg-secondary);
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 30px;
-            border: 2px solid rgba(0, 255, 255, 0.3);
+            border: 1px solid var(--purple-primary);
             position: relative;
             overflow: hidden;
         }
         
         .scenario-card::before {
-            content: '';
+            content: '🔐';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #00ffff, #0080ff, #00ffff);
-            animation: glow 2s ease-in-out infinite alternate;
+            top: 15px;
+            left: 20px;
+            font-size: 1.5em;
+            opacity: 0.7;
         }
         
         @keyframes glow {
@@ -341,26 +348,27 @@
         
         .scenario-title {
             font-family: 'Orbitron', monospace;
-            color: #00ffff;
+            color: var(--text-primary);
             margin-bottom: 20px;
             font-size: 1.4em;
             font-weight: 700;
+            margin-left: 40px;
         }
         
         .scenario-text {
             line-height: 1.6;
             margin-bottom: 20px;
-            color: #e0e0e0;
+            color: var(--text-secondary);
         }
         
         .scenario-quote {
-            background: rgba(0, 255, 255, 0.1);
-            border-left: 4px solid #00ffff;
+            background: var(--bg-card);
+            border-left: 4px solid var(--cyan-accent);
             padding: 20px;
             font-style: italic;
             border-radius: 0 10px 10px 0;
             margin: 20px 0;
-            color: #fff;
+            color: var(--text-primary);
         }
         
         .choices-grid {
@@ -422,10 +430,10 @@
         }
         
         .betting-arena {
-            background: rgba(40, 20, 60, 0.8);
+            background: var(--bg-card);
             border-radius: 20px;
             padding: 30px;
-            border: 2px solid rgba(255, 100, 255, 0.3);
+            border: 1px solid var(--purple-primary);
             margin: 30px 0;
             position: relative;
         }
@@ -447,10 +455,9 @@
         
         .betting-title {
             font-family: 'Orbitron', monospace;
-            color: #ff64ff;
+            color: var(--text-primary);
             font-size: 1.5em;
             margin-bottom: 15px;
-            text-shadow: 0 0 15px rgba(255, 100, 255, 0.5);
         }
         
         .bet-grid {
@@ -461,8 +468,8 @@
         }
         
         .bet-card {
-            background: rgba(0, 0, 40, 0.7);
-            border: 2px solid rgba(255, 100, 255, 0.3);
+            background: var(--bg-secondary);
+            border: 1px solid var(--purple-primary);
             border-radius: 15px;
             padding: 20px;
             cursor: pointer;
@@ -472,9 +479,9 @@
         }
         
         .bet-card:hover {
-            border-color: #ff64ff;
+            border-color: var(--purple-secondary);
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 100, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
         }
         
         .bet-card.selected {
@@ -487,12 +494,12 @@
             font-family: 'Orbitron', monospace;
             font-size: 1.8em;
             font-weight: 700;
-            color: #ff64ff;
+            color: var(--text-primary);
             margin-bottom: 10px;
         }
         
         .bet-risk {
-            color: #888;
+            color: var(--text-muted);
             font-size: 0.9em;
         }
         
@@ -547,9 +554,9 @@
         }
         
         .result-card {
-            background: rgba(15, 15, 35, 0.95);
+            background: var(--bg-card);
             border-radius: 20px;
-            border: 2px solid rgba(0, 255, 255, 0.5);
+            border: 2px solid var(--purple-primary);
             padding: 40px;
             max-width: 600px;
             text-align: center;
@@ -593,22 +600,21 @@
         }
         
         .stat-item {
-            background: rgba(0, 30, 60, 0.5);
+            background: var(--bg-secondary);
             border-radius: 15px;
             padding: 20px;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            border: 1px solid var(--purple-primary);
         }
         
         .stat-number {
             font-family: 'Orbitron', monospace;
             font-size: 2.5em;
             font-weight: 700;
-            color: #00ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            color: var(--cyan-accent);
         }
         
         .stat-label {
-            color: #888;
+            color: var(--text-muted);
             margin-top: 5px;
         }
         
@@ -626,8 +632,8 @@
     
     <div class="game-container">
         <div class="header">
-            <h1>⚡ The Analog Code Challenge ⚡</h1>
-            <p>Navigate the digital ethics frontier</p>
+            <h1>The Analog Integrity Grid</h1>
+            <div style="font-size: 1.1em; letter-spacing: 0.3em; font-weight: 300; margin-top: 5px;">S I M U L A T O R</div>
         </div>
         
         <div class="hud">
@@ -641,7 +647,10 @@
             
             <div class="coin-display">
                 <div class="coin-icon">₿</div>
-                <div class="coin-amount" id="coin-amount">100</div>
+                <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                    <div style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 2px;">Total Anacoins</div>
+                    <div class="coin-amount" id="coin-amount">100</div>
+                </div>
             </div>
             
             <div class="progress-section">
@@ -657,36 +666,36 @@
             <!-- Welcome Screen -->
             <div class="screen active" id="welcome-screen">
                 <div class="welcome-screen">
-                    <h2 class="welcome-title">🚀 Welcome to The Digital Ethics Frontier 🚀</h2>
-                    <p style="font-size: 1.2em; margin-bottom: 30px; color: #e0e0e0;">
-                        The year is 2025. As an agent at Analog Corp, you're tasked with navigating complex ethical scenarios 
-                        in the digital age. Every decision matters, every choice echoes through the digital realm.
+                    <h2 class="welcome-title">Welcome to the Grid, User</h2>
+                    <p style="font-size: 1.2em; margin-bottom: 30px; color: var(--text-secondary);">
+                        As a new recruit, your mission is to navigate the gray zones of digital ethics.
+                        Every decision counts, and each choice sends ripples from the digital world into the real one.
                     </p>
                     
-                    <div style="background: rgba(126, 63, 239, 0.1); padding: 25px; border-radius: 15px; margin: 30px 0; border: 1px solid var(--violet);">
-                        <h3 style="color: var(--violet); margin-bottom: 15px;">🎮 Game Rules</h3>
-                        <p style="margin-bottom: 15px;">• Start with <strong>100 Digital Credits</strong></p>
-                        <p style="margin-bottom: 15px;">• Make strategic bets based on your confidence</p>
-                        <p style="margin-bottom: 15px;">• Wrong choices in high-stakes situations can be costly</p>
-                        <p style="color: var(--blue); font-weight: bold;">• Reach 200+ credits to become a certified <strong>Digital Ethics Master</strong></p>
+                    <div style="background: var(--bg-secondary); padding: 25px; border-radius: 15px; margin: 30px 0; border: 1px solid var(--purple-primary);">
+                        <h3 style="color: var(--purple-accent); margin-bottom: 15px;">Mission Protocol: The Integrity Grid</h3>
+                        <p style="margin-bottom: 15px; color: var(--text-secondary);">You start with <strong>100 Anacoins</strong></p>
+                        <p style="margin-bottom: 15px; color: var(--text-secondary);">Every bet reflects your confidence</p>
+                        <p style="margin-bottom: 15px; color: var(--text-secondary);">The bigger the risk, the greater the cost of a wrong call</p>
+                        <p style="color: var(--cyan-accent); font-weight: bold;">Surpass <strong>200 Anacoins</strong> and earn your rank as <strong>The Analogist</strong></p>
                     </div>
                     
                     <h3 style="color: var(--violet); margin: 30px 0 20px;">Choose Your Agent:</h3>
                     <div class="character-selection" id="character-selection">
-                        <div class="character-option" data-character="rookie" onclick="selectCharacter('rookie')">
-                            <div class="character-icon">🤖</div>
+                        <div class="character-option" data-character="sakura" onclick="selectCharacter('sakura')">
+                            <div class="character-icon" style="background: linear-gradient(135deg, #ec4899, #a855f7); border-radius: 50%;"></div>
+                            <div class="character-name">Agent Sakura</div>
+                            <div class="character-role">The Strategist</div>
+                        </div>
+                        <div class="character-option" data-character="nova" onclick="selectCharacter('nova')">
+                            <div class="character-icon" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 50%;"></div>
                             <div class="character-name">Agent Nova</div>
                             <div class="character-role">The Analytical Mind</div>
                         </div>
-                        <div class="character-option" data-character="veteran" onclick="selectCharacter('veteran')">
-                            <div class="character-icon">👨‍💼</div>
-                            <div class="character-name">Commander Sage</div>
-                            <div class="character-role">The Wise Leader</div>
-                        </div>
-                        <div class="character-option" data-character="hacker" onclick="selectCharacter('hacker')">
-                            <div class="character-icon">👩‍💻</div>
-                            <div class="character-name">Agent Cipher</div>
-                            <div class="character-role">The Tech Specialist</div>
+                        <div class="character-option" data-character="sentinel" onclick="selectCharacter('sentinel')">
+                            <div class="character-icon" style="background: linear-gradient(135deg, #f97316, #dc2626); border-radius: 50%;"></div>
+                            <div class="character-name">Agent Sentinel</div>
+                            <div class="character-role">The Guardian</div>
                         </div>
                     </div>
                     
@@ -717,27 +726,39 @@
             <!-- Betting Screen -->
             <div class="screen" id="betting-screen">
                 <div class="betting-arena">
-                    <div class="betting-title">⚡ Confidence Matrix ⚡</div>
-                    <p style="color: #e0e0e0; margin-bottom: 20px;">
+                    <div class="betting-title">Confidence Matrix</div>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">
                         How certain are you about your analysis? Higher stakes yield greater rewards... but also greater risks.
                     </p>
                     
                     <div class="bet-grid" id="bet-grid">
                         <div class="bet-card" data-bet="10" onclick="selectBet(10)">
-                            <div class="bet-amount">10 Credits</div>
-                            <div class="bet-risk">🛡️ Safe Play</div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--purple-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8em;">₿</div>
+                                <div class="bet-amount">10</div>
+                            </div>
+                            <div class="bet-risk">Safe Play</div>
                         </div>
                         <div class="bet-card" data-bet="30" onclick="selectBet(30)">
-                            <div class="bet-amount">30 Credits</div>
-                            <div class="bet-risk">⚖️ Calculated Risk</div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--purple-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8em;">₿</div>
+                                <div class="bet-amount">30</div>
+                            </div>
+                            <div class="bet-risk">Calculated Risk</div>
                         </div>
                         <div class="bet-card" data-bet="50" onclick="selectBet(50)">
-                            <div class="bet-amount">50 Credits</div>
-                            <div class="bet-risk">🎯 High Confidence</div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--purple-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8em;">₿</div>
+                                <div class="bet-amount">30</div>
+                            </div>
+                            <div class="bet-risk">High Confidence</div>
                         </div>
                         <div class="bet-card" data-bet="all" onclick="selectBet('all')">
-                            <div class="bet-amount">ALL IN</div>
-                            <div class="bet-risk">🔥 Maximum Risk</div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--purple-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8em;">₿</div>
+                                <div class="bet-amount">ALL IN</div>
+                            </div>
+                            <div class="bet-risk">Maximum Risk</div>
                         </div>
                     </div>
                     
@@ -757,9 +778,9 @@
             <p id="result-description" style="margin: 20px 0; font-size: 1.1em;"></p>
             <div id="credit-change" style="font-size: 1.3em; font-weight: bold; margin: 20px 0;"></div>
             
-            <div style="background: rgba(0, 255, 255, 0.1); padding: 20px; border-radius: 15px; margin: 25px 0; border-left: 4px solid #00ffff;">
-                <h4 style="color: #00ffff; margin-bottom: 10px;">📊 AI Analysis</h4>
-                <p id="coaching-text" style="color: #e0e0e0;"></p>
+            <div style="background: var(--bg-secondary); padding: 20px; border-radius: 15px; margin: 25px 0; border-left: 4px solid var(--cyan-accent);">
+                <h4 style="color: var(--cyan-accent); margin-bottom: 10px;">AI + FEEDBACK</h4>
+                <p id="coaching-text" style="color: var(--text-secondary);"></p>
             </div>
             
             <button class="game-button" id="continue-mission" onclick="continueMission()">
@@ -771,16 +792,16 @@
     <!-- Final Screen -->
     <div class="screen" id="final-screen">
         <div style="text-align: center;">
-            <h2 style="font-family: 'Orbitron', monospace; color: #00ffff; font-size: 2.5em; margin-bottom: 30px;">
-                🎯 Mission Complete 🎯
+            <h2 style="font-family: 'Orbitron', monospace; color: var(--cyan-accent); font-size: 2.5em; margin-bottom: 30px;">
+                INTEGRITY<br>MISSION SUCCESSFUL!
             </h2>
             
-            <div class="achievement-badge" id="final-rank">Digital Ethics Master</div>
+            <div class="achievement-badge" id="final-rank">THE ANALOGIST</div>
             
             <div class="final-stats">
                 <div class="stat-item">
-                    <div class="stat-number" id="final-credits">200</div>
-                    <div class="stat-label">Final Credits</div>
+                    <div class="stat-number" id="final-credits">450</div>
+                    <div class="stat-label">Total Anacoins</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" id="success-rate">100%</div>
