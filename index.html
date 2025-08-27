@@ -51,20 +51,58 @@
         
         body {
             font-family: 'Jogan Soft', 'Exo 2', sans-serif;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            background: #1F1F1F;
             min-height: 100vh;
             overflow-x: hidden;
             color: var(--text-primary);
             position: relative;
         }
         
-        /* Animated background particles */
+        /* Complex animated background */
         .bg-particles {
             position: fixed;
             width: 100%;
             height: 100%;
             overflow: hidden;
             z-index: -1;
+        }
+        
+        .bg-blur-layer {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(32px);
+            animation: float-blur 8s ease-in-out infinite;
+        }
+        
+        .blur-fuchsia {
+            background: #C764A1;
+            opacity: 0.5;
+        }
+        
+        .blur-violet {
+            background: #7E35EF;
+            opacity: 0.6;
+        }
+        
+        .blur-purple {
+            background: #683DE5;
+            opacity: 0.4;
+        }
+        
+        .blur-white {
+            background: white;
+            opacity: 0.3;
+        }
+        
+        .blur-sunset {
+            background: #AE86B1;
+            opacity: 0.4;
+        }
+        
+        @keyframes float-blur {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.1); }
+            66% { transform: translate(-20px, 30px) scale(0.9); }
         }
         
         .particle {
@@ -80,26 +118,28 @@
         }
         
         .game-container {
-            background: var(--bg-card);
-            border-radius: 20px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--purple-primary);
-            box-shadow: 0 0 50px rgba(139, 92, 246, 0.2);
-            max-width: 1200px;
+            background: transparent;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            max-width: 971px;
             width: 95%;
-            margin: 20px auto;
-            overflow: hidden;
+            margin: 0 auto;
+            overflow: visible;
             position: relative;
+            min-height: 1552px;
         }
         
         .header {
-            background: linear-gradient(135deg, var(--purple-primary), var(--purple-secondary));
+            background: transparent;
             color: var(--text-primary);
-            padding: 30px;
+            padding: 33px 0;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            width: 440px;
+            height: 145px;
+            margin: 0 auto;
         }
         
         .header::before {
@@ -120,12 +160,11 @@
         
         .header h1 {
             font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px rgba(253, 214, 237, 0.8);
+            font-size: 2.1em;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #FFA0DA;
+            line-height: 29px;
             z-index: 2;
             position: relative;
         }
@@ -138,13 +177,17 @@
         }
         
         .hud {
-            background: var(--bg-secondary);
-            padding: 20px;
+            background: linear-gradient(124deg, #A77FDF 0%, #160F20 100%);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+            padding: 12px 19px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--purple-primary);
             position: relative;
+            margin: 0 auto 20px;
+            max-width: 772px;
+            height: 153px;
         }
         
         .character-avatar {
@@ -195,17 +238,28 @@
         }
         
         .coin-icon {
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, var(--fuchsia), var(--violet));
-            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(0deg, #725897 0%, #725897 100%), rgba(6.25, 2.68, 11.33, 0.42);
+            box-shadow: 0px 1px 1.3px rgba(0, 0, 0, 0.28);
+            border-radius: 300px;
+            outline: 0.5px #AE86B1 solid;
+            outline-offset: -0.5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 1.5em;
-            color: var(--light-text);
-            animation: rotate 4s linear infinite;
+            position: relative;
+            font-size: 0;
+        }
+        
+        .coin-icon::after {
+            content: '';
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(180deg, #FDD9ED 0%, #725897 100%);
+            box-shadow: 0px 0px 0.9px 1px #AE86B1 inset;
+            border-radius: 50%;
+            position: absolute;
         }
         
         @keyframes rotate {
@@ -269,71 +323,116 @@
         }
         
         .welcome-screen {
-            text-align: center;
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid var(--purple-primary);
+            text-align: left;
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            border: none;
+            max-width: 772px;
+            margin: 0 auto;
+            position: relative;
         }
         
         .welcome-title {
             font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
-            font-size: 2.5em;
-            color: var(--text-primary);
-            margin-bottom: 30px;
+            font-size: 24px;
+            color: #FFA0DA;
+            font-weight: 600;
+            line-height: 29px;
+            margin-bottom: 20px;
+            text-align: left;
         }
         
         .character-selection {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 56px;
             margin: 40px 0;
         }
         
         .character-option {
             cursor: pointer;
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid var(--purple-primary);
-            background: var(--bg-card);
+            width: 208px;
+            height: 274px;
+            border-radius: 17px;
+            border: 1px solid #FCDAEF;
+            background: linear-gradient(180deg, rgba(92.13, 62.81, 134, 0) 0%, #160F20 100%);
+            position: relative;
             transition: all 0.3s ease;
-            text-align: center;
-            min-width: 150px;
+            overflow: hidden;
+        }
+        
+        .character-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(22.02, 15.14, 31.79, 0) 0%, #5D4086 100%);
+            mix-blend-mode: screen;
+            pointer-events: none;
         }
         
         .character-option:hover {
-            border-color: var(--purple-secondary);
-            background: rgba(139, 92, 246, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(252, 218, 239, 0.3);
         }
         
         .character-option.selected {
-            border-color: var(--cyan-accent);
-            background: rgba(6, 182, 212, 0.1);
+            border-color: #FF7CCD;
+            box-shadow: 0 0 30px rgba(255, 124, 205, 0.4);
+            transform: translateY(-5px);
+        }
+        
+        .character-option.selected::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%);
+            pointer-events: none;
         }
         
         .character-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
+            width: 128px;
+            height: 125px;
+            margin: 34px auto 16px 40px;
+            border-radius: 0;
+            background: linear-gradient(140deg, #160F20 0%, #5D4086 100%);
+            box-shadow: 0px 1px 2.4px rgba(0, 0, 0, 0.25);
+            border: 1px solid #FF7CCD;
+            position: relative;
         }
         
         .character-name {
             font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
             font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 5px;
+            color: white;
+            font-size: 20px;
+            line-height: 29px;
+            position: absolute;
+            bottom: 61px;
+            left: 41px;
         }
         
         .character-role {
-            color: var(--text-secondary);
-            font-size: 0.9em;
+            color: #FFA0DA;
+            font-size: 15px;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
+            font-weight: 450;
+            line-height: 29px;
+            position: absolute;
+            bottom: 88px;
+            left: 41px;
+        }
+        
+        .character-role::before {
+            content: 'Agent';
+            display: block;
+            margin-bottom: -18px;
         }
         
         .scenario-card {
@@ -518,20 +617,30 @@
         }
         
         .game-button {
-            background: linear-gradient(135deg, var(--purple-primary), var(--purple-secondary));
-            color: var(--text-primary);
+            padding: 2.82px;
+            background: conic-gradient(from 180deg at 50.00% 50.00%, #120020 0deg, #C764A1 53deg, #AE86B1 90deg, #7E35EF 126deg);
+            border-radius: 140.8px;
             border: none;
-            padding: 18px 40px;
-            border-radius: 30px;
-            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
-            font-size: 1.1em;
-            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
             margin: 20px 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .game-button-inner {
+            background: linear-gradient(90deg, #5D4086 0%, #160F20 100%);
+            border-radius: 140.8px;
+            backdrop-filter: blur(21.12px);
+            padding: 22px 45px;
+            color: #FDD9ED;
+            font-size: 20.88px;
+            font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace;
+            font-weight: 500;
+            line-height: 24.31px;
+            border: none;
+            background-color: transparent;
         }
         
         .game-button:hover {
@@ -647,32 +756,34 @@
     <div class="game-container">
         <div class="header">
             <h1>The Analog Integrity Grid</h1>
-            <div style="font-size: 1.1em; letter-spacing: 0.3em; font-weight: 300; margin-top: 5px;">S I M U L A T O R</div>
+            <div style="font-size: 15px; font-family: 'ES Klarheit Kurrent', 'Orbitron', monospace; font-weight: 600; letter-spacing: 38.25px; color: white; line-height: 29px;">SIMULATOR</div>
         </div>
         
         <div class="hud">
             <div style="display: flex; align-items: center; gap: 20px;">
                 <div class="character-avatar" id="player-avatar">👤</div>
                 <div class="player-info">
-                    <div class="player-name" id="player-name">Agent Rookie</div>
-                    <div class="player-title" id="player-title">Ethics Trainee</div>
+                    <div style="color: #FFA0DA; font-size: 15px; font-family: 'ES Klarheit Kurrent'; font-weight: 450; line-height: 29px; margin-bottom: -18px;">Agent</div>
+                    <div class="player-name" id="player-name">Rookie</div>
                 </div>
             </div>
             
-            <div class="coin-display">
-                <div class="coin-icon">₿</div>
-                <div style="display: flex; flex-direction: column; align-items: flex-end;">
-                    <div style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 2px;">Total Anacoins</div>
-                    <div class="coin-amount" id="coin-amount">100</div>
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px;">
+                <div class="coin-display">
+                    <div style="color: white; font-size: 15px; font-family: 'ES Klarheit Kurrent'; font-weight: 450; line-height: 29px;">Total Anacoins</div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div class="coin-icon"></div>
+                        <div class="coin-amount" id="coin-amount" style="font-size: 40px; font-weight: 700; line-height: 29px;">100</div>
+                    </div>
                 </div>
             </div>
             
             <div class="progress-section">
-                <div class="progress-label">Mission Progress</div>
+                <div class="progress-label" style="color: white; font-size: 15px; font-family: 'ES Klarheit Kurrent'; font-weight: 600; line-height: 29px; margin-bottom: 4px;">Agent Progress</div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progress-fill"></div>
+                    <div class="progress-text" id="progress-text">0/3</div>
                 </div>
-                <div style="text-align: center; color: #888; font-size: 0.9em;" id="progress-text">0/2</div>
             </div>
         </div>
         
@@ -681,40 +792,42 @@
             <div class="screen active" id="welcome-screen">
                 <div class="welcome-screen">
                     <h2 class="welcome-title">Welcome to the Grid, User</h2>
-                    <p style="font-size: 1.2em; margin-bottom: 30px; color: var(--text-secondary);">
-                        As a new recruit, your mission is to navigate the gray zones of digital ethics.
+                    <p style="font-size: 15px; margin-bottom: 40px; color: #A9A9A9; font-family: 'ES Klarheit Kurrent'; font-weight: 600; line-height: 21px; width: 729px;">
+                        As a new recruit, your mission is to navigate the gray zones of digital ethics.<br/>
                         Every decision counts, and each choice sends ripples from the digital world into the real one.
                     </p>
                     
-                    <div style="background: var(--bg-secondary); padding: 25px; border-radius: 15px; margin: 30px 0; border: 1px solid var(--purple-primary);">
-                        <h3 style="color: var(--purple-accent); margin-bottom: 15px;">Mission Protocol: The Integrity Grid</h3>
-                        <p style="margin-bottom: 15px; color: var(--text-secondary);">You start with <strong>100 Anacoins</strong></p>
-                        <p style="margin-bottom: 15px; color: var(--text-secondary);">Every bet reflects your confidence</p>
-                        <p style="margin-bottom: 15px; color: var(--text-secondary);">The bigger the risk, the greater the cost of a wrong call</p>
-                        <p style="color: var(--cyan-accent); font-weight: bold;">Surpass <strong>200 Anacoins</strong> and earn your rank as <strong>The Analogist</strong></p>
+                    <div style="width: 772px; height: 151px; background: #5B4579; border-radius: 16px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding: 19px; margin-bottom: 40px; overflow: hidden; position: relative;">
+                        <div style="position: absolute; top: -18px; right: 0; width: 571px; height: 187px; background: linear-gradient(270deg, #160F20 0%, rgba(22, 15, 32, 0) 100%);"></div>
+                        <h3 style="color: #FFA0DA; font-size: 24px; font-family: 'ES Klarheit Kurrent'; font-weight: 700; line-height: 19px; margin-bottom: 15px;">Mission Protocol: The Integrity Grid</h3>
+                        <p style="margin-bottom: 8px; color: white; font-size: 15px; font-family: 'ES Klarheit Kurrent'; font-weight: 450; line-height: 19px;">You start with <span style="color: #FFA0DA;">100 Anacoins</span></p>
+                        <p style="margin-bottom: 8px; color: white; font-size: 15px; font-family: 'ES Klarheit Kurrent'; font-weight: 450; line-height: 19px;">Every bet reflects your confidence</p>
+                        <p style="margin-bottom: 8px; color: white; font-size: 15px; font-family: 'ES Klarheit Kurrent'; font-weight: 450; line-height: 19px;">The bigger the risk, the greater the cost of a wrong call</p>
+                        <p style="color: white; font-size: 15px; font-family: 'ES Klarheit Kurrent'; font-weight: 450; line-height: 19px;">Surpass <span style="color: #FFA0DA;">200 Anacoins</span> and earn your rank as <span style="color: #FFA0DA;">The Analogist</span></p>
                     </div>
                     
-                    <h3 style="color: var(--purple-accent); margin: 30px 0 20px;">Choose Your Agent:</h3>
+                    <h3 style="color: #FFA0DA; font-size: 24px; font-family: 'ES Klarheit Kurrent'; font-weight: 600; line-height: 29px; margin: 40px 0 15px;">Choose your Agent</h3>
+                    <p style="color: #A9A9A9; font-size: 15px; font-family: 'ES Klarheit Kurrent'; font-weight: 600; line-height: 21px; margin-bottom: 30px;">Pick an agent that best represents you-</p>
                     <div class="character-selection" id="character-selection">
                         <div class="character-option" data-character="sakura" onclick="selectCharacter('sakura')">
-                            <div class="character-icon" style="background: linear-gradient(135deg, #ec4899, #a855f7); border-radius: 50%;"></div>
-                            <div class="character-name">Agent Sakura</div>
+                            <div class="character-icon"></div>
                             <div class="character-role">The Strategist</div>
+                            <div class="character-name">Sakura</div>
                         </div>
                         <div class="character-option" data-character="nova" onclick="selectCharacter('nova')">
-                            <div class="character-icon" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 50%;"></div>
-                            <div class="character-name">Agent Nova</div>
+                            <div class="character-icon"></div>
                             <div class="character-role">The Analytical Mind</div>
+                            <div class="character-name">Nova</div>
                         </div>
                         <div class="character-option" data-character="sentinel" onclick="selectCharacter('sentinel')">
-                            <div class="character-icon" style="background: linear-gradient(135deg, #f97316, #dc2626); border-radius: 50%;"></div>
-                            <div class="character-name">Agent Sentinel</div>
+                            <div class="character-icon"></div>
                             <div class="character-role">The Guardian</div>
+                            <div class="character-name">Sentinel</div>
                         </div>
                     </div>
                     
                     <button class="game-button" id="start-mission" onclick="startMission()" disabled>
-                        🚀 Begin Mission
+                        <div class="game-button-inner">Start Mission</div>
                     </button>
                 </div>
             </div>
@@ -979,20 +1092,31 @@
             }
         ];
         
-        // Initialize background particles
+        // Initialize complex background
         function createParticles() {
             const particleContainer = document.getElementById('particles');
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.width = Math.random() * 6 + 2 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                particleContainer.appendChild(particle);
-            }
+            
+            // Create blur layers matching Figma design
+            const blurLayers = [
+                { class: 'blur-fuchsia', width: '574px', height: '437px', left: '30%', top: '20%', blur: '32px' },
+                { class: 'blur-white', width: '380px', height: '289px', left: '5%', top: '40%', blur: '32px' },
+                { class: 'blur-white', width: '380px', height: '289px', left: '50%', top: '42%', blur: '32px' },
+                { class: 'blur-violet', width: '532px', height: '431px', left: '20%', top: '25%', blur: '47px' },
+                { class: 'blur-violet', width: '532px', height: '431px', left: '-10%', top: '35%', blur: '47px' },
+                { class: 'blur-sunset', width: '400px', height: '200px', left: '60%', top: '60%', blur: '29px' }
+            ];
+            
+            blurLayers.forEach((layer, index) => {
+                const blurDiv = document.createElement('div');
+                blurDiv.className = `bg-blur-layer ${layer.class}`;
+                blurDiv.style.width = layer.width;
+                blurDiv.style.height = layer.height;
+                blurDiv.style.left = layer.left;
+                blurDiv.style.top = layer.top;
+                blurDiv.style.filter = `blur(${layer.blur})`;
+                blurDiv.style.animationDelay = (index * 0.5) + 's';
+                particleContainer.appendChild(blurDiv);
+            });
         }
         
         // Character selection
